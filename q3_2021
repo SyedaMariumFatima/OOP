@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std;
+class student{
+    protected:
+    string name;
+    int id;
+    int enrollment_yr;
+    int marks[5];
+    public:
+    student(string n, int i, int y): name(n), id(i), enrollment_yr(y){}
+    void setMarks(){
+        for(int i=0; i<5; i++){
+            cout<<"enter marks for course1: ";
+            cin>>marks[i];
+        }
+    }
+    bool pass(){
+        int count=0;
+        for(int i=0; i<5; i++) {
+            if(marks[i]>=50) count++;
+            else return false;
+        }
+        return true;
+    }
+    
+    void display() {
+        cout << "Name: " << name << "\nID: " << id 
+             << "\nEnrollment Year: " << enrollment_yr << endl;
+
+        int total = 0;
+        for (int j = 0; j < 5; j++) {
+            cout << "Course " << j+1 << " Marks: " << marks[j] << endl;
+            total += marks[j];
+        }
+        cout << "Total Marks: " << total << endl;
+    }
+
+
+};
+class ms_student: public student{
+    bool pass(){
+        int count=0;
+        for(int i=0; i<5; i++) if(marks[i]>=50) count++;
+        if(count>=3)return true;
+        return false;
+    }
+};
+int main(){
+    student cs_student("marium", 970, 2025);
+    return 0;
+}
